@@ -125,9 +125,11 @@ const normalizeProject = (project, featured) => ({
 
 const seedPortfolio = async () => {
   try {
-    const mongoUri =
-      process.env.MONGODB_URI ||
-      "mongodb+srv://naimaa2it_db_user:LseCFqfqltKY58GW@cluster0.g3sv2kc.mongodb.net/a2it-database?appName=Cluster0";
+    const mongoUri = process.env.MONGODB_URI;
+
+    if (!mongoUri) {
+      throw new Error("MONGODB_URI is not set in environment variables");
+    }
 
     await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
