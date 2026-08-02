@@ -20,7 +20,6 @@ const upload = multer({
 });
 
 const CLOUDINARY_FOLDERS = {
-  employees: "a2it/employees",
   blogs: "a2it/blog/images",
   portfolio: "a2it/portfolio",
   services: "a2it/services",
@@ -103,7 +102,6 @@ const uploadToFixedFolder = (folderKey, errorLabel) => {
   };
 };
 
-const uploadEmployeeImage = uploadToFixedFolder("employees", "employee");
 const uploadBlogImage = uploadToFixedFolder("blogs", "blog");
 const uploadPortfolioImage = uploadToFixedFolder("portfolio", "portfolio");
 const uploadServiceImage = uploadToFixedFolder("services", "service");
@@ -206,7 +204,6 @@ const deletePortfolioResource = async (req, res) => {
 module.exports = {
   upload,
   uploadImageByType,
-  uploadEmployeeImage,
   uploadBlogImage,
   uploadPortfolioImage,
   uploadServiceImage,

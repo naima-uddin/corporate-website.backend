@@ -3,7 +3,6 @@ const { authMiddleware } = require("../middleware/auth");
 const {
   upload,
   uploadImageByType,
-  uploadEmployeeImage,
   uploadBlogImage,
   uploadPortfolioImage,
   uploadServiceImage,
@@ -21,12 +20,6 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadImageByType,
-);
-router.post(
-  "/employees",
-  authMiddleware,
-  upload.single("image"),
-  uploadEmployeeImage,
 );
 router.post("/blogs", authMiddleware, upload.single("image"), uploadBlogImage);
 router.post(

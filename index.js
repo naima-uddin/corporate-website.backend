@@ -13,10 +13,6 @@ const servicesRoutes = require("./routes/services");
 const serviceCategoriesRoutes = require("./routes/serviceCategories");
 const portfolioRoutes = require("./routes/portfolio");
 const portfolioCategoriesRoutes = require("./routes/portfolioCategories");
-const promotionalProjectsRoutes = require("./routes/promotionalProjects");
-const promotionalProjectCategoriesRoutes = require("./routes/promotionalProjectCategories");
-const promotionalPackagesRoutes = require("./routes/promotionalPackages");
-const employeesRoutes = require("./routes/employees");
 const rolesRoutes = require("./routes/roles");
 const blogRoutes = require("./routes/blog");
 const uploadRoutes = require("./routes/upload");
@@ -692,17 +688,6 @@ app.use("/api/service-categories", serviceCategoriesRoutes);
 // Portfolio routes
 app.use("/api/portfolio", portfolioRoutes);
 app.use("/api/portfolio-categories", portfolioCategoriesRoutes);
-
-// Promotional content routes
-app.use("/api/promotional-projects", promotionalProjectsRoutes);
-app.use(
-  "/api/promotional-project-categories",
-  promotionalProjectCategoriesRoutes,
-);
-app.use("/api/promotional-packages", promotionalPackagesRoutes);
-
-// Employee routes (public + admin)
-app.use("/api/employees", employeesRoutes);
 
 // Roles routes
 app.use("/api/roles", rolesRoutes);
