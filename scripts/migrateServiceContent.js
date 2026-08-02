@@ -4,11 +4,17 @@ const Service = require("../models/Service");
 const ServiceCategory = require("../models/ServiceCategory");
 
 const categories = [
-  { name: "ecommerce", displayName: "E-Commerce" },
-  { name: "development", displayName: "Development" },
-  { name: "design", displayName: "Design" },
-  { name: "marketing", displayName: "Marketing" },
+  { name: "erp", displayName: "ERP Management" },
+  { name: "amazon", displayName: "Amazon" },
+  { name: "digital-marketing", displayName: "Digital Marketing" },
+  { name: "design-development", displayName: "Design & Development" },
+  { name: "shopify", displayName: "Shopify" },
+  { name: "ebay", displayName: "eBay" },
+  { name: "hosting", displayName: "Hosting & Servers" },
+  { name: "ecommerce-dev", displayName: "E-Commerce Development" },
 ];
+
+const obsoleteCategoryNames = ["ecommerce", "development", "design", "marketing"];
 
 const services = [
   // ---- E-Commerce ----
@@ -17,7 +23,7 @@ const services = [
     description:
       "Let Amazon handle fulfillment while you focus on growing your business. We manage storage, inventory, order fulfillment, and Prime eligibility so your products sell around the clock.",
     icon: "ShoppingCart",
-    category: "ecommerce",
+    category: "amazon",
     path: "/services/amazon-fba",
     image: "/assets/eCommerce/5.avif",
     images: ["/assets/amazon/5.avif", "/assets/amazon/6.avif"],
@@ -48,7 +54,7 @@ const services = [
     description:
       "Partner directly with Amazon to scale your brand — we guide you from strategy to execution for long-term growth as a first-party Amazon vendor.",
     icon: "Store",
-    category: "ecommerce",
+    category: "amazon",
     path: "/services/amazon-vendor",
     image: "/assets/vendor/hero.avif",
     images: ["/assets/serviceImg/1.webp"],
@@ -78,7 +84,7 @@ const services = [
     description:
       "Comprehensive Amazon Marketing Services that empower brands to enhance visibility, optimize product listings, and drive conversions through Sponsored Products and Sponsored Brands campaigns.",
     icon: "TrendingUp",
-    category: "ecommerce",
+    category: "amazon",
     path: "/services/amazon-marketing",
     features: [
       "Amazon Sponsored Products",
@@ -102,7 +108,7 @@ const services = [
     description:
       "Transform your digital presence into a profitable Amazon affiliate business with expert guidance on enrollment, niche selection, content strategy, and link optimization.",
     icon: "Tag",
-    category: "ecommerce",
+    category: "amazon",
     path: "/services/amazon-affiliate",
     features: [
       "Program Enrollment Assistance",
@@ -129,7 +135,7 @@ const services = [
     description:
       "Transform your online store with powerful marketplace solutions that drive sales, enhance customer experience, and scale your business globally on eBay.",
     icon: "Tag",
-    category: "ecommerce",
+    category: "ebay",
     path: "/services/e-bay",
     image: "/assets/eBay/1.webp",
     images: ["/assets/eBay/2.jpg", "/assets/eBay/3.jpg"],
@@ -158,7 +164,7 @@ const services = [
     description:
       "Strategic eCommerce development focused on user experience, conversion optimization, and revenue growth — from discovery and UX design to analytics, CRO, and A/B testing.",
     icon: "ShoppingBag",
-    category: "ecommerce",
+    category: "ecommerce-dev",
     path: "/services/e-commerce",
     image: "/assets/eCommerce/4.jpg",
     images: ["/assets/eCommerce/6.jpg", "/assets/eCommerce/7.avif"],
@@ -187,7 +193,7 @@ const services = [
     description:
       "We build high-performing Shopify stores that convert visitors into customers and drive sustainable growth — from store development and platform migration to custom apps and ongoing support.",
     icon: "Store",
-    category: "ecommerce",
+    category: "shopify",
     path: "/services/shopify",
     features: [
       "Store Development",
@@ -217,7 +223,7 @@ const services = [
     description:
       "Beautiful, high-performance websites built with modern technologies that drive measurable business results through strategic design and clean engineering.",
     icon: "Code",
-    category: "development",
+    category: "design-development",
     path: "/services/web-development",
     features: [
       "Custom Web Design",
@@ -239,7 +245,7 @@ const services = [
     description:
       "Beautiful, high-performance mobile applications that drive engagement, increase revenue, and elevate your brand presence on iOS and Android.",
     icon: "Smartphone",
-    category: "development",
+    category: "design-development",
     path: "/services/mobile-app",
     features: [
       "Native App Development (Swift & Kotlin)",
@@ -269,7 +275,7 @@ const services = [
     description:
       "AI-powered enterprise platforms that unify your operations with predictive analytics and intelligent automation — tailored ERP configurations for manufacturing, healthcare, retail, and construction.",
     icon: "Database",
-    category: "development",
+    category: "erp",
     path: "/services/erp",
     features: [
       "AI-Powered Analytics",
@@ -298,7 +304,7 @@ const services = [
     description:
       "Enterprise-grade server infrastructure with 99.99% uptime, global CDN, and military-grade security — spanning web hosting, cloud hosting, dedicated servers, VPS, managed hosting, and domain management.",
     icon: "Server",
-    category: "development",
+    category: "hosting",
     path: "/services/server-hosting",
     features: [
       "Web Hosting",
@@ -324,7 +330,7 @@ const services = [
     description:
       "We craft intuitive, beautiful user experiences that drive engagement, conversion, and customer satisfaction through human-centered design.",
     icon: "Palette",
-    category: "design",
+    category: "design-development",
     path: "/services/ui-ux-design",
     features: [
       "User Research",
@@ -349,7 +355,7 @@ const services = [
     description:
       "We create thumb-stopping content and data-driven strategies that build communities and drive conversions across Instagram, Facebook, YouTube, and LinkedIn.",
     icon: "Share2",
-    category: "marketing",
+    category: "digital-marketing",
     path: "/services/social-media",
     features: [
       "Platform-Specific Strategy",
@@ -369,7 +375,7 @@ const services = [
     description:
       "Amplify your reach with targeted precision — strategic SEM/PPC roadmaps, Google Ads and Microsoft Advertising management, programmatic display, and transparent, ROI-focused reporting.",
     icon: "TrendingUp",
-    category: "marketing",
+    category: "digital-marketing",
     path: "/services/seo",
     features: [
       "Strategic SEM/PPC Roadmap & Consultation",
@@ -392,7 +398,7 @@ const services = [
     description:
       "Strategic storytelling and PR amplification that drive awareness, authority, and audience engagement — from content marketing to digital PR and content audits.",
     icon: "Tag",
-    category: "marketing",
+    category: "digital-marketing",
     path: "/services/content-pr",
     features: [
       "Content Marketing",
@@ -406,7 +412,7 @@ const services = [
     description:
       "We build brand strategies and designs that capture attention, build trust, and drive business growth — from discovery and positioning to visual identity and implementation.",
     icon: "Palette",
-    category: "marketing",
+    category: "digital-marketing",
     path: "/services/branding",
     features: [
       "Brand Discovery & Research",
@@ -471,6 +477,11 @@ const run = async () => {
     }
 
     console.log(`✅ Migrated services: ${created} created, ${updated} updated`);
+
+    const { deletedCount } = await ServiceCategory.deleteMany({
+      name: { $in: obsoleteCategoryNames },
+    });
+    console.log(`✅ Removed ${deletedCount} obsolete broad categories`);
 
     process.exit(0);
   } catch (error) {

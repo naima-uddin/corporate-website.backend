@@ -1,10 +1,14 @@
 const ServiceCategory = require("../models/ServiceCategory");
 
 const DEFAULT_CATEGORIES = [
-  { name: "development", displayName: "Development" },
-  { name: "ecommerce", displayName: "E-Commerce" },
-  { name: "marketing", displayName: "Marketing" },
-  { name: "design", displayName: "Design" },
+  { name: "erp", displayName: "ERP Management" },
+  { name: "amazon", displayName: "Amazon" },
+  { name: "digital-marketing", displayName: "Digital Marketing" },
+  { name: "design-development", displayName: "Design & Development" },
+  { name: "shopify", displayName: "Shopify" },
+  { name: "ebay", displayName: "eBay" },
+  { name: "hosting", displayName: "Hosting & Servers" },
+  { name: "ecommerce-dev", displayName: "E-Commerce Development" },
 ];
 
 const normalizeCategory = (value) =>
