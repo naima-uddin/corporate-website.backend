@@ -26,6 +26,7 @@ const CLOUDINARY_FOLDERS = {
   services: "a2it/services",
   users: "a2it/users",
   clients: "a2it/clients",
+  banners: "a2it/banners",
   general: "a2it/general",
 };
 
@@ -107,6 +108,7 @@ const uploadBlogImage = uploadToFixedFolder("blogs", "blog");
 const uploadPortfolioImage = uploadToFixedFolder("portfolio", "portfolio");
 const uploadServiceImage = uploadToFixedFolder("services", "service");
 const uploadClientLogoImage = uploadToFixedFolder("clients", "client logo");
+const uploadBannerImage = uploadToFixedFolder("banners", "banner");
 
 const listPortfolioResources = async (req, res) => {
   try {
@@ -209,6 +211,7 @@ module.exports = {
   uploadPortfolioImage,
   uploadServiceImage,
   uploadClientLogoImage,
+  uploadBannerImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,

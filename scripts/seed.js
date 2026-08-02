@@ -2,6 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("../models/User");
 const Employee = require("../models/Employee");
+const Banner = require("../models/Banner");
 
 const seedDatabase = async () => {
   try {
@@ -131,6 +132,63 @@ const seedDatabase = async () => {
       console.log(`✅ Seeded ${employees.length} employees`);
     } else {
       console.log(`✅ ${employeeCount} employees already exist`);
+    }
+
+    // Seed default homepage banner slides if none exist
+    const bannerCount = await Banner.countDocuments();
+    if (bannerCount === 0) {
+      const banners = [
+        {
+          image: "/assets/banner/0.avif",
+          eyebrow: "E-Commerce Solutions",
+          title: "Seamless Commerce, Built to Scale",
+          subtitle: "Amazon, eBay, Shopify & affiliate business solutions for global growth.",
+          buttonText: "Get Started",
+          buttonLink: "/contact",
+          order: 0,
+        },
+        {
+          image: "/assets/banner/1.avif",
+          eyebrow: "Digital Transformation",
+          title: "Relinquish Your Digital Potential",
+          subtitle: "We transform ambitious ideas into cutting-edge digital products.",
+          buttonText: "Get Started",
+          buttonLink: "/contact",
+          order: 1,
+        },
+        {
+          image: "/assets/banner/2.avif",
+          eyebrow: "Technology Solutions",
+          title: "Next Generation Tech Solutions",
+          subtitle: "Scalable, secure and innovative systems engineered for the enterprise.",
+          buttonText: "View Our Work",
+          buttonLink: "/portfolio",
+          order: 2,
+        },
+        {
+          image: "/assets/banner/3.avif",
+          eyebrow: "AI & Automation",
+          title: "AI-Powered Innovation",
+          subtitle: "Harnessing artificial intelligence to accelerate your business.",
+          buttonText: "Get Started",
+          buttonLink: "/contact",
+          order: 3,
+        },
+        {
+          image: "/assets/banner/4.jpeg",
+          eyebrow: "Infrastructure",
+          title: "Cloud-Native Architecture",
+          subtitle: "Future-proof your infrastructure with our engineering expertise.",
+          buttonText: "View Our Work",
+          buttonLink: "/portfolio",
+          order: 4,
+        },
+      ];
+
+      await Banner.insertMany(banners);
+      console.log(`✅ Seeded ${banners.length} banner slides`);
+    } else {
+      console.log(`✅ ${bannerCount} banner slides already exist`);
     }
 
     process.exit(0);

@@ -21,6 +21,7 @@ const rolesRoutes = require("./routes/roles");
 const blogRoutes = require("./routes/blog");
 const uploadRoutes = require("./routes/upload");
 const clientLogosRoutes = require("./routes/clientLogos");
+const bannerRoutes = require("./routes/banner");
 
 const app = express();
 
@@ -31,11 +32,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:3002",
-      "https://a2itltd.com",
-      "https://www.a2itltd.com",
       "http://localhost:5000",
-      "https://a2it-dashboard-backend.vercel.app",
-      "https://marvelous-longma-1f45a1.netlify.app",
     ],
     methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
@@ -715,6 +712,9 @@ app.use("/api/upload", uploadRoutes);
 
 // Client showcase logo routes
 app.use("/api/client-logos", clientLogosRoutes);
+
+// Homepage hero banner slider routes
+app.use("/api/banners", bannerRoutes);
 
 // ============================================
 // End API Routes
