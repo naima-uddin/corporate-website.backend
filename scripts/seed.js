@@ -47,7 +47,6 @@ const seedDatabase = async () => {
       const banners = [
         {
           image: "/assets/banner/0.avif",
-          eyebrow: "E-Commerce Solutions",
           title: "Seamless Commerce, Built to Scale",
           subtitle: "Amazon, eBay, Shopify & affiliate business solutions for global growth.",
           buttonText: "Get Started",
@@ -56,7 +55,6 @@ const seedDatabase = async () => {
         },
         {
           image: "/assets/banner/1.avif",
-          eyebrow: "Digital Transformation",
           title: "Relinquish Your Digital Potential",
           subtitle: "We transform ambitious ideas into cutting-edge digital products.",
           buttonText: "Get Started",
@@ -65,7 +63,6 @@ const seedDatabase = async () => {
         },
         {
           image: "/assets/banner/2.avif",
-          eyebrow: "Technology Solutions",
           title: "Next Generation Tech Solutions",
           subtitle: "Scalable, secure and innovative systems engineered for the enterprise.",
           buttonText: "View Our Work",
@@ -74,7 +71,6 @@ const seedDatabase = async () => {
         },
         {
           image: "/assets/banner/3.avif",
-          eyebrow: "AI & Automation",
           title: "AI-Powered Innovation",
           subtitle: "Harnessing artificial intelligence to accelerate your business.",
           buttonText: "Get Started",
@@ -83,7 +79,6 @@ const seedDatabase = async () => {
         },
         {
           image: "/assets/banner/4.jpeg",
-          eyebrow: "Infrastructure",
           title: "Cloud-Native Architecture",
           subtitle: "Future-proof your infrastructure with our engineering expertise.",
           buttonText: "View Our Work",

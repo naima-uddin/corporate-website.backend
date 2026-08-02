@@ -10,11 +10,6 @@ const bannerSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    eyebrow: {
-      type: String,
-      trim: true,
-      default: "",
-    },
     title: {
       type: String,
       required: [true, "Please provide a banner title"],

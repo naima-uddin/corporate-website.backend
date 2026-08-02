@@ -44,7 +44,6 @@ const createBanner = async (req, res) => {
     const {
       image,
       publicId,
-      eyebrow,
       title,
       subtitle,
       buttonText,
@@ -69,7 +68,6 @@ const createBanner = async (req, res) => {
     const newBanner = new Banner({
       image,
       publicId: publicId || "",
-      eyebrow: eyebrow || "",
       title,
       subtitle: subtitle || "",
       buttonText: buttonText || "",
@@ -99,7 +97,6 @@ const updateBanner = async (req, res) => {
     const {
       image,
       publicId,
-      eyebrow,
       title,
       subtitle,
       buttonText,
@@ -119,7 +116,6 @@ const updateBanner = async (req, res) => {
 
     if (image) banner.image = image;
     if (publicId !== undefined) banner.publicId = publicId;
-    if (eyebrow !== undefined) banner.eyebrow = eyebrow;
     if (title !== undefined) banner.title = title;
     if (subtitle !== undefined) banner.subtitle = subtitle;
     if (buttonText !== undefined) banner.buttonText = buttonText;
