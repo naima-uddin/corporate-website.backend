@@ -73,8 +73,20 @@ const getAdminServices = async (req, res) => {
 
 const createService = async (req, res) => {
   try {
-    const { title, description, icon, features, category, path, color } =
-      req.body;
+    const {
+      title,
+      description,
+      icon,
+      features,
+      category,
+      path,
+      color,
+      image,
+      images,
+      details,
+      process: processSteps,
+      stats,
+    } = req.body;
 
     if (!title || !description || !icon || !features || !category || !path) {
       return res.status(400).json({
@@ -91,6 +103,11 @@ const createService = async (req, res) => {
       category,
       path,
       color: color || "bg-[#0066ff]",
+      image: image || "",
+      images: Array.isArray(images) ? images : [],
+      details: details || "",
+      process: Array.isArray(processSteps) ? processSteps : [],
+      stats: Array.isArray(stats) ? stats : [],
     });
 
     await newService.save();
@@ -121,6 +138,11 @@ const updateService = async (req, res) => {
       category,
       path,
       color,
+      image,
+      images,
+      details,
+      process: processSteps,
+      stats,
       isActive,
     } = req.body;
 
@@ -140,6 +162,12 @@ const updateService = async (req, res) => {
     if (category) service.category = category;
     if (path) service.path = path;
     if (color) service.color = color;
+    if (image !== undefined) service.image = image;
+    if (images !== undefined) service.images = Array.isArray(images) ? images : [];
+    if (details !== undefined) service.details = details;
+    if (processSteps !== undefined)
+      service.process = Array.isArray(processSteps) ? processSteps : [];
+    if (stats !== undefined) service.stats = Array.isArray(stats) ? stats : [];
     if (isActive !== undefined) service.isActive = isActive;
 
     await service.save();

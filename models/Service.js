@@ -43,6 +43,23 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    images: {
+      type: [String],
+      default: [],
+    },
+    details: {
+      type: String,
+      default: "",
+      maxlength: [8000, "Details cannot exceed 8000 characters"],
+    },
+    process: {
+      type: [String],
+      default: [],
+    },
+    stats: {
+      type: [String],
+      default: [],
+    },
     isActive: {
       type: Boolean,
       default: true,

@@ -90,6 +90,41 @@ const createServiceCategory = async (req, res) => {
   }
 };
 
+const updateServiceCategory = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const normalizedName = normalizeCategory(name);
+    const { displayName, bannerImage, description } = req.body;
+
+    const category = await ServiceCategory.findOne({ name: normalizedName });
+
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: "Service category not found",
+      });
+    }
+
+    if (displayName) category.displayName = displayName;
+    if (bannerImage !== undefined) category.bannerImage = bannerImage;
+    if (description !== undefined) category.description = description;
+
+    await category.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Service category updated successfully",
+      category,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update service category",
+      error: error.message,
+    });
+  }
+};
+
 const deleteServiceCategory = async (req, res) => {
   try {
     const { name } = req.params;
@@ -129,6 +164,7 @@ const deleteServiceCategory = async (req, res) => {
 module.exports = {
   getServiceCategories,
   createServiceCategory,
+  updateServiceCategory,
   deleteServiceCategory,
   ensureDefaultCategories,
 };

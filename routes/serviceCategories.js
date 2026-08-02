@@ -7,6 +7,7 @@ const {
 const {
   getServiceCategories,
   createServiceCategory,
+  updateServiceCategory,
   deleteServiceCategory,
 } = require("../controllers/serviceCategoriesController");
 
@@ -18,6 +19,12 @@ router.post(
   authMiddleware,
   requireAdminOrModerator,
   createServiceCategory,
+);
+router.put(
+  "/:name",
+  authMiddleware,
+  requireAdminOrModerator,
+  updateServiceCategory,
 );
 router.delete("/:name", authMiddleware, adminMiddleware, deleteServiceCategory);
 
