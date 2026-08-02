@@ -8,7 +8,8 @@ const {
   uploadServiceImage,
   uploadClientLogoImage,
   uploadBannerImage,
-  uploadJoinUsImage,
+  uploadFooterLogoImage,
+  uploadFooterTopBandImage,
   uploadNewsImage,
   listPortfolioResources,
   listMediaResources,
@@ -49,10 +50,16 @@ router.post(
   uploadBannerImage,
 );
 router.post(
-  "/join-us",
+  "/footer-logo",
   authMiddleware,
   upload.single("image"),
-  uploadJoinUsImage,
+  uploadFooterLogoImage,
+);
+router.post(
+  "/footer-top-band",
+  authMiddleware,
+  upload.single("image"),
+  uploadFooterTopBandImage,
 );
 router.post(
   "/news",

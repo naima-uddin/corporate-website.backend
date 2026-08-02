@@ -18,7 +18,7 @@ const blogRoutes = require("./routes/blog");
 const uploadRoutes = require("./routes/upload");
 const clientLogosRoutes = require("./routes/clientLogos");
 const bannerRoutes = require("./routes/banner");
-const joinUsRoutes = require("./routes/joinUs");
+const footerRoutes = require("./routes/footer");
 const newsRoutes = require("./routes/news");
 
 const app = express();
@@ -703,8 +703,8 @@ app.use("/api/client-logos", clientLogosRoutes);
 // Homepage hero banner slider routes
 app.use("/api/banners", bannerRoutes);
 
-// Homepage "Join Us" section routes
-app.use("/api/join-us", joinUsRoutes);
+// Site-wide footer routes (top hero band + dynamic link columns)
+app.use("/api/footer", footerRoutes);
 
 // News & Media routes (separate from Blog)
 app.use("/api/news", newsRoutes);
