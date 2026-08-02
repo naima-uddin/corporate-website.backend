@@ -20,6 +20,7 @@ const clientLogosRoutes = require("./routes/clientLogos");
 const bannerRoutes = require("./routes/banner");
 const footerRoutes = require("./routes/footer");
 const newsRoutes = require("./routes/news");
+const siteSettingsRoutes = require("./routes/siteSettings");
 
 const app = express();
 
@@ -708,6 +709,9 @@ app.use("/api/footer", footerRoutes);
 
 // News & Media routes (separate from Blog)
 app.use("/api/news", newsRoutes);
+
+// Site-wide branding (logo + site name), used by Navbar and elsewhere
+app.use("/api/site-settings", siteSettingsRoutes);
 
 // ============================================
 // End API Routes

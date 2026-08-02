@@ -30,6 +30,7 @@ const CLOUDINARY_FOLDERS = {
   "footer-top-band": "a2it/footer/top-band",
   news: "a2it/news",
   general: "a2it/general",
+  "site-logo": "a2it/site/logo",
 };
 
 const uploadToCloudinary = (fileBuffer, folder) => {
@@ -116,6 +117,7 @@ const uploadFooterTopBandImage = uploadToFixedFolder(
   "footer top band",
 );
 const uploadNewsImage = uploadToFixedFolder("news", "news");
+const uploadSiteLogoImage = uploadToFixedFolder("site-logo", "site logo");
 
 const listPortfolioResources = async (req, res) => {
   try {
@@ -221,6 +223,7 @@ module.exports = {
   uploadFooterLogoImage,
   uploadFooterTopBandImage,
   uploadNewsImage,
+  uploadSiteLogoImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
