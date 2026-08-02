@@ -13,6 +13,7 @@ const {
   uploadNewsImage,
   uploadSiteLogoImage,
   uploadSpotlightImage,
+  uploadJoinUsImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
@@ -80,6 +81,12 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadSpotlightImage,
+);
+router.post(
+  "/join-us",
+  authMiddleware,
+  upload.single("image"),
+  uploadJoinUsImage,
 );
 router.get("/portfolio/list", authMiddleware, listPortfolioResources);
 router.get("/media/list", authMiddleware, listMediaResources);
