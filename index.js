@@ -21,6 +21,7 @@ const bannerRoutes = require("./routes/banner");
 const footerRoutes = require("./routes/footer");
 const newsRoutes = require("./routes/news");
 const siteSettingsRoutes = require("./routes/siteSettings");
+const spotlightRoutes = require("./routes/spotlight");
 
 const app = express();
 
@@ -712,6 +713,9 @@ app.use("/api/news", newsRoutes);
 
 // Site-wide branding (logo + site name), used by Navbar and elsewhere
 app.use("/api/site-settings", siteSettingsRoutes);
+
+// Homepage leadership spotlight quote (image + quote + name + profile link)
+app.use("/api/spotlight", spotlightRoutes);
 
 // ============================================
 // End API Routes
