@@ -56,6 +56,15 @@ const updateAboutPage = async (req, res) => {
       }));
     }
 
+    if (Array.isArray(req.body.awards)) {
+      about.awards = req.body.awards.map((award) => ({
+        image: award.image || "",
+        publicId: award.publicId || "",
+        title: award.title || "",
+        description: award.description || "",
+      }));
+    }
+
     await about.save();
 
     return res.status(200).json({

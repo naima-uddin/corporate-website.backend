@@ -19,6 +19,16 @@ const milestoneSchema = new mongoose.Schema(
   { _id: false },
 );
 
+const awardSchema = new mongoose.Schema(
+  {
+    image: { type: String, default: "" },
+    publicId: { type: String, default: "" },
+    title: { type: String, trim: true, default: "" },
+    description: { type: String, trim: true, default: "" },
+  },
+  { _id: false },
+);
+
 const aboutPageSchema = new mongoose.Schema(
   {
     whoWeAre: {
@@ -32,7 +42,7 @@ const aboutPageSchema = new mongoose.Schema(
         type: String,
         trim: true,
         default:
-          "M/S. MD. RAKIB HASAN is a 1st Class Government Contractor, Supplier, General Merchant and Auctioneer, established in 2012 as a sole proprietorship under Md. Rakib Hasan. We are enlisted with numerous government departments, including the Education Engineering Department, Health Engineering Department, Public Works Department, Bangladesh Agricultural Development Corporation, Directorate General of Food and the Forest Department.\nHeadquartered at House-320, Road-21, New DOHS, Mohakhali, Dhaka-1206, with our registered office in Premchara, Bagherpara, Jashore, we hold valid Trade License, TIN and VAT (BIN) registrations along with DCCI and JCCI membership.",
+          "M/S. MD. RAKIB HASAN — a 1st Class Government Contractor, Supplier, General Merchant & Auctioneer, proudly serving government departments and institutions across Bangladesh since 2012.\nWe are enlisted with numerous government departments, including the Education Engineering Department, Health Engineering Department, Public Works Department, Bangladesh Agricultural Development Corporation, Directorate General of Food and the Forest Department.\nHeadquartered at House-320, Road-21, New DOHS, Mohakhali, Dhaka-1206, with our registered office in Premchara, Bagherpara, Jashore, we hold valid Trade License, TIN and VAT (BIN) registrations along with DCCI and JCCI membership.",
       },
       image: { type: String, default: "" },
       publicId: { type: String, default: "" },
@@ -50,6 +60,8 @@ const aboutPageSchema = new mongoose.Schema(
         default:
           "Each project we undertake has a unique approach. We strive to understand our clients' needs, objectives and expectations, comparing them against what works best to deliver a highly customized service that helps our clients succeed. Every member of our team works toward one common goal: building strong, genuine and lasting relationships with the government bodies and institutions we serve.",
       },
+      image: { type: String, default: "" },
+      publicId: { type: String, default: "" },
     },
     vision: {
       label: { type: String, trim: true, default: "Our Vision" },
@@ -64,6 +76,8 @@ const aboutPageSchema = new mongoose.Schema(
         default:
           "Our journey has never been an easy one — we have faced many difficulties and our vision has met resistance at every step of the way. But we have learned perseverance and resilience, and over the years we have never lost the enthusiasm and passion that drives our sustainable growth. We envision continuing to help government departments and institutions move forward, without ever compromising on quality.",
       },
+      image: { type: String, default: "" },
+      publicId: { type: String, default: "" },
     },
     boardOfDirectors: {
       type: [boardMemberSchema],
@@ -105,6 +119,10 @@ const aboutPageSchema = new mongoose.Schema(
           },
         ],
       },
+    },
+    awards: {
+      type: [awardSchema],
+      default: () => [],
     },
   },
   { timestamps: true },
