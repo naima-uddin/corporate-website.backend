@@ -7,6 +7,7 @@ const {
   uploadPortfolioImage,
   uploadServiceImage,
   uploadClientLogoImage,
+  uploadGalleryImage,
   uploadBannerImage,
   uploadFooterLogoImage,
   uploadFooterTopBandImage,
@@ -48,6 +49,12 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadClientLogoImage,
+);
+router.post(
+  "/gallery",
+  authMiddleware,
+  upload.single("image"),
+  uploadGalleryImage,
 );
 router.post(
   "/banners",

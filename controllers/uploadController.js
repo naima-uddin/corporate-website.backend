@@ -28,6 +28,7 @@ const CLOUDINARY_FOLDERS = {
   services: "a2it/services",
   users: "a2it/users",
   clients: "a2it/clients",
+  gallery: "a2it/gallery",
   banners: "a2it/banners",
   "footer-logo": "a2it/footer/logo",
   "footer-top-band": "a2it/footer/top-band",
@@ -118,6 +119,7 @@ const uploadBlogImage = uploadToFixedFolder("blogs", "blog");
 const uploadPortfolioImage = uploadToFixedFolder("portfolio", "portfolio");
 const uploadServiceImage = uploadToFixedFolder("services", "service");
 const uploadClientLogoImage = uploadToFixedFolder("clients", "client logo");
+const uploadGalleryImage = uploadToFixedFolder("gallery", "gallery");
 const uploadBannerImage = uploadToFixedFolder("banners", "banner");
 const uploadFooterLogoImage = uploadToFixedFolder("footer-logo", "footer logo");
 const uploadFooterTopBandImage = uploadToFixedFolder(
@@ -238,6 +240,7 @@ module.exports = {
   uploadPortfolioImage,
   uploadServiceImage,
   uploadClientLogoImage,
+  uploadGalleryImage,
   uploadBannerImage,
   uploadFooterLogoImage,
   uploadFooterTopBandImage,
