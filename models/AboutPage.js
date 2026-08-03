@@ -6,7 +6,6 @@ const boardMemberSchema = new mongoose.Schema(
     publicId: { type: String, default: "" },
     name: { type: String, trim: true, default: "" },
     title: { type: String, trim: true, default: "" },
-    row: { type: Number, default: 1 },
   },
   { _id: false },
 );
@@ -82,9 +81,9 @@ const aboutPageSchema = new mongoose.Schema(
     boardOfDirectors: {
       type: [boardMemberSchema],
       default: () => [
-        { name: "Md. Rakib Hasan", title: "Proprietor", row: 1 },
-        { name: "Md. Tariq Al Karim", title: "Assistant Executive Officer", row: 2 },
-        { name: "Emam Sharif", title: "Personal Secretary", row: 2 },
+        { name: "Md. Rakib Hasan", title: "Proprietor" },
+        { name: "Md. Tariq Al Karim", title: "Assistant Executive Officer" },
+        { name: "Emam Sharif", title: "Personal Secretary" },
       ],
     },
     ourStory: {
