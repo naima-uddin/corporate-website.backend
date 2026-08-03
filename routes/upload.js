@@ -15,6 +15,8 @@ const {
   uploadSpotlightImage,
   uploadJoinUsImage,
   uploadAboutImage,
+  uploadGovernmentEnlistmentImage,
+  uploadGovernmentEnlistmentCertificate,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
@@ -94,6 +96,18 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadAboutImage,
+);
+router.post(
+  "/government-enlistment",
+  authMiddleware,
+  upload.single("image"),
+  uploadGovernmentEnlistmentImage,
+);
+router.post(
+  "/government-enlistment-certificate",
+  authMiddleware,
+  upload.single("image"),
+  uploadGovernmentEnlistmentCertificate,
 );
 router.get("/portfolio/list", authMiddleware, listPortfolioResources);
 router.get("/media/list", authMiddleware, listMediaResources);

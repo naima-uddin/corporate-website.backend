@@ -24,6 +24,7 @@ const siteSettingsRoutes = require("./routes/siteSettings");
 const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
 const aboutRoutes = require("./routes/about");
+const governmentEnlistmentRoutes = require("./routes/governmentEnlistment");
 
 const app = express();
 
@@ -724,6 +725,9 @@ app.use("/api/join-us", joinUsRoutes);
 
 // About Us page (who we are, mission, vision, board of directors, our story)
 app.use("/api/about", aboutRoutes);
+
+// Government Enlistment page (department credentials + certificates)
+app.use("/api/government-enlistment", governmentEnlistmentRoutes);
 
 // ============================================
 // End API Routes

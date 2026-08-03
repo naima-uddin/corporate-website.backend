@@ -11,10 +11,13 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith("image/")) {
+    if (
+      file.mimetype.startsWith("image/") ||
+      file.mimetype === "application/pdf"
+    ) {
       cb(null, true);
     } else {
-      cb(new Error("Only image files are allowed"));
+      cb(new Error("Only image or PDF files are allowed"));
     }
   },
 });
@@ -34,6 +37,8 @@ const CLOUDINARY_FOLDERS = {
   spotlight: "a2it/spotlight",
   "join-us": "a2it/join-us",
   about: "a2it/about",
+  "government-enlistment": "a2it/government-enlistment",
+  "government-enlistment-certificate": "a2it/government-enlistment/certificates",
 };
 
 const uploadToCloudinary = (fileBuffer, folder) => {
@@ -124,6 +129,14 @@ const uploadSiteLogoImage = uploadToFixedFolder("site-logo", "site logo");
 const uploadSpotlightImage = uploadToFixedFolder("spotlight", "spotlight");
 const uploadJoinUsImage = uploadToFixedFolder("join-us", "join us");
 const uploadAboutImage = uploadToFixedFolder("about", "about");
+const uploadGovernmentEnlistmentImage = uploadToFixedFolder(
+  "government-enlistment",
+  "government enlistment",
+);
+const uploadGovernmentEnlistmentCertificate = uploadToFixedFolder(
+  "government-enlistment-certificate",
+  "government enlistment certificate",
+);
 
 const listPortfolioResources = async (req, res) => {
   try {
@@ -233,6 +246,8 @@ module.exports = {
   uploadSpotlightImage,
   uploadJoinUsImage,
   uploadAboutImage,
+  uploadGovernmentEnlistmentImage,
+  uploadGovernmentEnlistmentCertificate,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
