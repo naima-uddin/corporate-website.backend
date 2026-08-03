@@ -18,6 +18,7 @@ const blogRoutes = require("./routes/blog");
 const uploadRoutes = require("./routes/upload");
 const clientLogosRoutes = require("./routes/clientLogos");
 const galleryImagesRoutes = require("./routes/galleryImages");
+const galleryCategoriesRoutes = require("./routes/galleryCategories");
 const bannerRoutes = require("./routes/banner");
 const footerRoutes = require("./routes/footer");
 const newsRoutes = require("./routes/news");
@@ -708,6 +709,7 @@ app.use("/api/client-logos", clientLogosRoutes);
 
 // Company gallery image routes
 app.use("/api/gallery-images", galleryImagesRoutes);
+app.use("/api/gallery-categories", galleryCategoriesRoutes);
 
 // Homepage hero banner slider routes
 app.use("/api/banners", bannerRoutes);
