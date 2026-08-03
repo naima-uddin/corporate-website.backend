@@ -46,14 +46,13 @@ const updateAboutPage = async (req, res) => {
       }
     });
 
-    if (Array.isArray(req.body.team)) {
-      about.team = req.body.team.map((member) => ({
+    if (Array.isArray(req.body.boardOfDirectors)) {
+      about.boardOfDirectors = req.body.boardOfDirectors.map((member) => ({
         image: member.image || "",
         publicId: member.publicId || "",
         name: member.name || "",
         title: member.title || "",
-        bio: member.bio || "",
-        quote: member.quote || "",
+        row: Number(member.row) || 1,
       }));
     }
 
