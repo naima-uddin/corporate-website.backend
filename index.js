@@ -23,6 +23,7 @@ const newsRoutes = require("./routes/news");
 const siteSettingsRoutes = require("./routes/siteSettings");
 const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
+const aboutRoutes = require("./routes/about");
 
 const app = express();
 
@@ -720,6 +721,9 @@ app.use("/api/spotlight", spotlightRoutes);
 
 // Homepage "Join Us" section (heading, description, button + 4 cards)
 app.use("/api/join-us", joinUsRoutes);
+
+// About Us page (who we are, mission, vision, board of directors, our story)
+app.use("/api/about", aboutRoutes);
 
 // ============================================
 // End API Routes

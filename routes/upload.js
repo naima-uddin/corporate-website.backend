@@ -14,6 +14,7 @@ const {
   uploadSiteLogoImage,
   uploadSpotlightImage,
   uploadJoinUsImage,
+  uploadAboutImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
@@ -87,6 +88,12 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadJoinUsImage,
+);
+router.post(
+  "/about",
+  authMiddleware,
+  upload.single("image"),
+  uploadAboutImage,
 );
 router.get("/portfolio/list", authMiddleware, listPortfolioResources);
 router.get("/media/list", authMiddleware, listMediaResources);

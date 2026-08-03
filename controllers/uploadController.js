@@ -33,6 +33,7 @@ const CLOUDINARY_FOLDERS = {
   "site-logo": "a2it/site/logo",
   spotlight: "a2it/spotlight",
   "join-us": "a2it/join-us",
+  about: "a2it/about",
 };
 
 const uploadToCloudinary = (fileBuffer, folder) => {
@@ -122,6 +123,7 @@ const uploadNewsImage = uploadToFixedFolder("news", "news");
 const uploadSiteLogoImage = uploadToFixedFolder("site-logo", "site logo");
 const uploadSpotlightImage = uploadToFixedFolder("spotlight", "spotlight");
 const uploadJoinUsImage = uploadToFixedFolder("join-us", "join us");
+const uploadAboutImage = uploadToFixedFolder("about", "about");
 
 const listPortfolioResources = async (req, res) => {
   try {
@@ -230,6 +232,7 @@ module.exports = {
   uploadSiteLogoImage,
   uploadSpotlightImage,
   uploadJoinUsImage,
+  uploadAboutImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
