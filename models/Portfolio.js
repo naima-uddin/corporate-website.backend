@@ -38,6 +38,31 @@ const portfolioSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    contractNo: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    location: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    contractValue: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    status: {
+      type: String,
+      enum: ["Completed", "Ongoing", "Upcoming"],
+      default: "Completed",
+    },
+    completionYear: {
+      type: String,
+      trim: true,
+      default: "",
+    },
     duration: {
       type: String,
       default: "",

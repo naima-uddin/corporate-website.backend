@@ -41,7 +41,7 @@ const getAdminGalleryImages = async (req, res) => {
 
 const createGalleryImage = async (req, res) => {
   try {
-    const { image, publicId, title, category, order } = req.body;
+    const { image, publicId, title, category, order, batchId } = req.body;
 
     if (!image) {
       return res.status(400).json({
@@ -62,6 +62,7 @@ const createGalleryImage = async (req, res) => {
       publicId: publicId || "",
       title,
       category: category || "",
+      batchId: batchId || "",
       order: order ?? 0,
     });
 
@@ -84,7 +85,8 @@ const createGalleryImage = async (req, res) => {
 const updateGalleryImage = async (req, res) => {
   try {
     const { id } = req.params;
-    const { image, publicId, title, category, order, isActive } = req.body;
+    const { image, publicId, title, category, order, isActive, batchId } =
+      req.body;
 
     const item = await GalleryImage.findById(id);
 
@@ -99,6 +101,7 @@ const updateGalleryImage = async (req, res) => {
     if (publicId !== undefined) item.publicId = publicId;
     if (title !== undefined) item.title = title;
     if (category !== undefined) item.category = category;
+    if (batchId !== undefined) item.batchId = batchId;
     if (order !== undefined) item.order = order;
     if (isActive !== undefined) item.isActive = isActive;
 

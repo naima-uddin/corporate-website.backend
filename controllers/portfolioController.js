@@ -53,6 +53,11 @@ const createPortfolio = async (req, res) => {
       images,
       link,
       client,
+      contractNo,
+      location,
+      contractValue,
+      status,
+      completionYear,
       duration,
       teamSize,
       role,
@@ -80,6 +85,11 @@ const createPortfolio = async (req, res) => {
       images: images || [],
       link: link || "",
       client: client || "",
+      contractNo: contractNo || "",
+      location: location || "",
+      contractValue: contractValue || "",
+      status: status || "Completed",
+      completionYear: completionYear || "",
       duration: duration || "",
       teamSize: teamSize || "",
       role: role || "",
@@ -119,6 +129,11 @@ const updatePortfolio = async (req, res) => {
       images,
       link,
       client,
+      contractNo,
+      location,
+      contractValue,
+      status,
+      completionYear,
       duration,
       teamSize,
       role,
@@ -148,6 +163,11 @@ const updatePortfolio = async (req, res) => {
     if (images) portfolio.images = images;
     if (link) portfolio.link = link;
     if (client) portfolio.client = client;
+    if (contractNo !== undefined) portfolio.contractNo = contractNo;
+    if (location !== undefined) portfolio.location = location;
+    if (contractValue !== undefined) portfolio.contractValue = contractValue;
+    if (status) portfolio.status = status;
+    if (completionYear !== undefined) portfolio.completionYear = completionYear;
     if (duration) portfolio.duration = duration;
     if (teamSize) portfolio.teamSize = teamSize;
     if (role) portfolio.role = role;

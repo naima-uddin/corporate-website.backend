@@ -27,6 +27,7 @@ const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
 const aboutRoutes = require("./routes/about");
 const governmentEnlistmentRoutes = require("./routes/governmentEnlistment");
+const projectsPageRoutes = require("./routes/projectsPage");
 
 const app = express();
 
@@ -734,6 +735,9 @@ app.use("/api/about", aboutRoutes);
 
 // Government Enlistment page (department credentials + certificates)
 app.use("/api/government-enlistment", governmentEnlistmentRoutes);
+
+// Projects page (hero, stats, work categories, timeline, CTA) — contract items live in /api/portfolio
+app.use("/api/projects-page", projectsPageRoutes);
 
 // ============================================
 // End API Routes

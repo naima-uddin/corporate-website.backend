@@ -20,6 +20,12 @@ const galleryImageSchema = new mongoose.Schema(
       trim: true,
       default: "",
     },
+    batchId: {
+      type: String,
+      trim: true,
+      default: "",
+      index: true,
+    },
     order: {
       type: Number,
       default: 0,
