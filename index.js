@@ -48,7 +48,9 @@ app.use(
 );
 
 // Connect to MongoDB
-connectDB();
+connectDB().catch((error) => {
+  console.error("❌ Failed to connect to MongoDB:", error.message);
+});
 
 // Parse various content types with increased limits
 app.use(bodyParser.json({ limit: "10mb" }));
