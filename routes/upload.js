@@ -19,6 +19,7 @@ const {
   uploadGovernmentEnlistmentImage,
   uploadGovernmentEnlistmentCertificate,
   uploadProjectsPageImage,
+  uploadContactPageImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
@@ -122,6 +123,12 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadProjectsPageImage,
+);
+router.post(
+  "/contact-page",
+  authMiddleware,
+  upload.single("image"),
+  uploadContactPageImage,
 );
 router.get("/portfolio/list", authMiddleware, listPortfolioResources);
 router.get("/media/list", authMiddleware, listMediaResources);

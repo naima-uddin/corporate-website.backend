@@ -22,6 +22,7 @@ const contactSettingsSchema = new mongoose.Schema(
     },
     mapLat: { type: Number, default: 23.78286 },
     mapLng: { type: Number, default: 90.395439 },
+    backgroundImage: { type: String, trim: true, default: "" },
   },
   { timestamps: true },
 );
