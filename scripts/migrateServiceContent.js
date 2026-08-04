@@ -17,7 +17,7 @@ const categories = [
 const obsoleteCategoryNames = ["ecommerce", "development", "design", "marketing"];
 
 const services = [
-  // ---- E-Commerce ----
+  // ---- E-Commerce ---- b
   {
     title: "Amazon FBA Services",
     description:
