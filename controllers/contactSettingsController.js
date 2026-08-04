@@ -41,7 +41,6 @@ const SCALAR_FIELDS = [
   "phone",
   "email",
   "workingHours",
-  "backgroundImage",
 ];
 const NUMBER_FIELDS = ["mapLat", "mapLng"];
 
