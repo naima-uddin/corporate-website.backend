@@ -102,18 +102,22 @@ const footerSchema = new mongoose.Schema(
     address: {
       type: String,
       trim: true,
-      default: "Plot No 470, Road No 06, DOHS Mirpur, Dhaka",
+      default: "House-320, Road-21, DOHS, Mohakhali, Dhaka, Bangladesh",
     },
-    phone: { type: String, trim: true, default: "+8801846937397" },
-    email: { type: String, trim: true, default: "info@a2itltd.com" },
+    phone: {
+      type: String,
+      trim: true,
+      default: "+880 1711-270825 (Mobile) / +880 2-9833330 (Landline)",
+    },
+    email: { type: String, trim: true, default: "msmdrakibhasan1992@gmail.com" },
 
     // Social links (data-driven, mapped to icons on the frontend by platform)
     socialLinks: {
       type: [socialLinkSchema],
       default: () => [
-        { platform: "facebook", url: "https://www.facebook.com/A2ITLtd" },
+        { platform: "facebook", url: "https://www.facebook.com/" },
         { platform: "twitter", url: "https://twitter.com" },
-        { platform: "linkedin", url: "https://www.linkedin.com/in/a2itlimited/" },
+        { platform: "linkedin", url: "https://www.linkedin.com/" },
       ],
     },
 
@@ -121,7 +125,7 @@ const footerSchema = new mongoose.Schema(
     copyrightText: {
       type: String,
       trim: true,
-      default: "© {year} A2IT Ltd. All Rights Reserved",
+      default: "© {year} MRH. All Rights Reserved",
     },
 
     legalLinks: {

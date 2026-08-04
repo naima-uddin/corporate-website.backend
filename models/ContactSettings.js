@@ -7,17 +7,21 @@ const contactSettingsSchema = new mongoose.Schema(
     address: {
       type: String,
       trim: true,
-      default: "Plot No 470, Road No 06 (Old 29), DOHS Mirpur, Dhaka Division, Bangladesh",
+      default: "House-320, Road-21, DOHS, Mohakhali, Dhaka, Bangladesh",
     },
-    phone: { type: String, trim: true, default: "+880 1846-937397" },
-    email: { type: String, trim: true, default: "info@a2itltd.com" },
+    phone: {
+      type: String,
+      trim: true,
+      default: "+880 1711-270825 (Mobile) / +880 2-9833330 (Landline)",
+    },
+    email: { type: String, trim: true, default: "msmdrakibhasan1992@gmail.com" },
     workingHours: {
       type: String,
       trim: true,
       default: "Saturday - Friday: 10AM - 7PM",
     },
-    mapLat: { type: Number, default: 23.836236 },
-    mapLng: { type: Number, default: 90.358672 },
+    mapLat: { type: Number, default: 23.78286 },
+    mapLng: { type: Number, default: 90.395439 },
   },
   { timestamps: true },
 );

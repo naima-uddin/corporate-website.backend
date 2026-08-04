@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const siteSettingsSchema = new mongoose.Schema(
   {
-    siteName: { type: String, trim: true, default: "A2IT Ltd" },
+    siteName: { type: String, trim: true, default: "MRH" },
     logoImage: { type: String, default: "" },
     logoPublicId: { type: String, default: "" },
   },
