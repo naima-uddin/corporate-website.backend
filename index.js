@@ -278,7 +278,7 @@ app.post("/api/send-email", async (req, res) => {
             <div style="margin-top: 40px; padding-top: 20px; text-align: center; border-top: 2px solid #eaeaea; color: #999; font-size: 13px;">
               <p style="margin: 5px 0;">This inquiry was sent from the consultation modal on your website.</p>
               <p style="margin: 5px 0;">Received: ${new Date().toLocaleString()}</p>
-              <p style="margin: 15px 0 0 0;">© ${new Date().getFullYear()} A2ITLD. All rights reserved.</p>
+              <p style="margin: 15px 0 0 0;">© ${new Date().getFullYear()} MRH. All rights reserved.</p>
             </div>
           </div>
         </div>

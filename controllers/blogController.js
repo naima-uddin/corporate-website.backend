@@ -98,7 +98,7 @@ export const createBlog = async (req, res) => {
 
     // Set default author if not provided
     if (!blogData.author) {
-      blogData.author = { name: "A2IT Ltd" };
+      blogData.author = { name: "MRH" };
     }
 
     console.log("📝 Creating blog:", blogData.title);
