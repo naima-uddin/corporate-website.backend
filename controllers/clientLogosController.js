@@ -41,7 +41,7 @@ const getAdminClientLogos = async (req, res) => {
 
 const createClientLogo = async (req, res) => {
   try {
-    const { image, publicId, name, order } = req.body;
+    const { image, publicId, name, description, order } = req.body;
 
     if (!image) {
       return res.status(400).json({
@@ -54,6 +54,7 @@ const createClientLogo = async (req, res) => {
       image,
       publicId: publicId || "",
       name: name || "",
+      description: description || "",
       order: order ?? 0,
     });
 
@@ -76,7 +77,7 @@ const createClientLogo = async (req, res) => {
 const updateClientLogo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { image, publicId, name, order, isActive } = req.body;
+    const { image, publicId, name, description, order, isActive } = req.body;
 
     const logo = await ClientLogo.findById(id);
 
@@ -90,6 +91,7 @@ const updateClientLogo = async (req, res) => {
     if (image) logo.image = image;
     if (publicId !== undefined) logo.publicId = publicId;
     if (name !== undefined) logo.name = name;
+    if (description !== undefined) logo.description = description;
     if (order !== undefined) logo.order = order;
     if (isActive !== undefined) logo.isActive = isActive;
 

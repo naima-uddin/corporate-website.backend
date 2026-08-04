@@ -11,6 +11,7 @@ const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
 const servicesRoutes = require("./routes/services");
 const serviceCategoriesRoutes = require("./routes/serviceCategories");
+const navbarCategoriesRoutes = require("./routes/navbarCategories");
 const portfolioRoutes = require("./routes/portfolio");
 const portfolioCategoriesRoutes = require("./routes/portfolioCategories");
 const rolesRoutes = require("./routes/roles");
@@ -697,6 +698,9 @@ app.use("/api/services", servicesRoutes);
 
 // Service category routes
 app.use("/api/service-categories", serviceCategoriesRoutes);
+
+// Navbar "Our Services" dropdown categories (independent of Service/ServiceCategory)
+app.use("/api/navbar-categories", navbarCategoriesRoutes);
 
 // Portfolio routes
 app.use("/api/portfolio", portfolioRoutes);
