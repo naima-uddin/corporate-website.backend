@@ -23,6 +23,7 @@ const bannerRoutes = require("./routes/banner");
 const footerRoutes = require("./routes/footer");
 const newsRoutes = require("./routes/news");
 const siteSettingsRoutes = require("./routes/siteSettings");
+const contactSettingsRoutes = require("./routes/contactSettings");
 const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
 const aboutRoutes = require("./routes/about");
@@ -723,6 +724,9 @@ app.use("/api/news", newsRoutes);
 
 // Site-wide branding (logo + site name), used by Navbar and elsewhere
 app.use("/api/site-settings", siteSettingsRoutes);
+
+// Contact page settings (address, phone, email, map location), used by the Contact page
+app.use("/api/contact-settings", contactSettingsRoutes);
 
 // Homepage leadership spotlight quote (image + quote + name + profile link)
 app.use("/api/spotlight", spotlightRoutes);
