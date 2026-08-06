@@ -10,16 +10,6 @@ const clientLogoSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    name: {
-      type: String,
-      trim: true,
-      default: "",
-    },
-    description: {
-      type: String,
-      trim: true,
-      default: "",
-    },
     order: {
       type: Number,
       default: 0,
