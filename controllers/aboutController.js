@@ -52,6 +52,7 @@ const updateAboutPage = async (req, res) => {
         publicId: member.publicId || "",
         name: member.name || "",
         title: member.title || "",
+        speech: member.speech || "",
       }));
     }
 

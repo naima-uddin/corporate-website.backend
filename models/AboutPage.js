@@ -6,6 +6,7 @@ const boardMemberSchema = new mongoose.Schema(
     publicId: { type: String, default: "" },
     name: { type: String, trim: true, default: "" },
     title: { type: String, trim: true, default: "" },
+    speech: { type: String, trim: true, default: "" },
   },
   { _id: false },
 );
