@@ -43,14 +43,14 @@ const updateCSR = async (req, res) => {
     if (typeof req.body.description === "string")
       doc.description = req.body.description;
 
-    if (Array.isArray(req.body.items)) {
-      doc.items = req.body.items.map((item) => ({
-        title: item.title || "",
-        description: item.description || "",
-        image: item.image || "",
-        imagePublicId: item.imagePublicId || "",
-        date: item.date || "",
-      }));
+    if (req.body.chairman && typeof req.body.chairman === "object") {
+      doc.chairman = {
+        image: req.body.chairman.image || "",
+        imagePublicId: req.body.chairman.imagePublicId || "",
+        name: req.body.chairman.name || "",
+        designation: req.body.chairman.designation || "",
+        message: req.body.chairman.message || "",
+      };
     }
 
     await doc.save();
