@@ -30,6 +30,7 @@ const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
 const aboutRoutes = require("./routes/about");
 const governmentEnlistmentRoutes = require("./routes/governmentEnlistment");
+const csrRoutes = require("./routes/csr");
 const searchRoutes = require("./routes/search");
 const projectsPageRoutes = require("./routes/projectsPage");
 
@@ -748,6 +749,9 @@ app.use("/api/about", aboutRoutes);
 
 // Government Enlistment page (department credentials + certificates)
 app.use("/api/government-enlistment", governmentEnlistmentRoutes);
+
+// CSR page (corporate social responsibility initiatives)
+app.use("/api/csr", csrRoutes);
 
 // Projects page (hero, stats, work categories, timeline, CTA) — contract items live in /api/portfolio
 app.use("/api/projects-page", projectsPageRoutes);

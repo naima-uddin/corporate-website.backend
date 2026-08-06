@@ -41,6 +41,7 @@ const CLOUDINARY_FOLDERS = {
   "government-enlistment": "a2it/government-enlistment",
   "government-enlistment-certificate": "a2it/government-enlistment/certificates",
   "projects-page": "a2it/projects-page",
+  csr: "a2it/csr",
 };
 
 const uploadToCloudinary = (fileBuffer, folder) => {
@@ -144,6 +145,7 @@ const uploadProjectsPageImage = uploadToFixedFolder(
   "projects-page",
   "projects page",
 );
+const uploadCSRImage = uploadToFixedFolder("csr", "CSR");
 
 const listPortfolioResources = async (req, res) => {
   try {
@@ -257,6 +259,7 @@ module.exports = {
   uploadGovernmentEnlistmentImage,
   uploadGovernmentEnlistmentCertificate,
   uploadProjectsPageImage,
+  uploadCSRImage,
   listPortfolioResources,
   listMediaResources,
   deletePortfolioResource,
