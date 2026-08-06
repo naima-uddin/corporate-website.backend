@@ -43,6 +43,7 @@ const allowedOrigins = [
   "http://localhost:5000",
   "https://a2itltd.com",
   "https://www.a2itltd.com",
+  "https://corporate-website-backend.vercel.app",
   "https://legendary-raindrop-8c0310.netlify.app/",
   process.env.FRONTEND_URL,
 ].filter(Boolean);
