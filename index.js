@@ -36,14 +36,26 @@ const projectsPageRoutes = require("./routes/projectsPage");
 const app = express();
 
 // Enhanced middleware setup
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:3002",
+  "http://localhost:5000",
+  "https://a2itltd.com",
+  "https://www.a2itltd.com",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "http://localhost:3002",
-      "http://localhost:5000",
-    ],
+    origin: (origin, callback) => {
+      // Allow non-browser requests (no Origin header, e.g. curl/Postman)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Not allowed by CORS: ${origin}`));
+      }
+    },
     methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
