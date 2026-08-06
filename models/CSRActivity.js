@@ -32,13 +32,9 @@ const csrActivitySchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    image: {
-      type: String,
-      default: "",
-    },
-    imagePublicId: {
-      type: String,
-      default: "",
+    images: {
+      type: [String],
+      default: () => [],
     },
     date: {
       type: String,
