@@ -28,6 +28,7 @@ const siteSettingsRoutes = require("./routes/siteSettings");
 const contactSettingsRoutes = require("./routes/contactSettings");
 const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
+const jobOpportunitiesRoutes = require("./routes/jobOpportunities");
 const aboutRoutes = require("./routes/about");
 const governmentEnlistmentRoutes = require("./routes/governmentEnlistment");
 const csrRoutes = require("./routes/csr");
@@ -744,6 +745,9 @@ app.use("/api/spotlight", spotlightRoutes);
 
 // Homepage "Join Us" section (heading, description, button + 4 cards)
 app.use("/api/join-us", joinUsRoutes);
+
+// Careers page — job opportunities managed from the dashboard (with expiry dates)
+app.use("/api/job-opportunities", jobOpportunitiesRoutes);
 
 // About Us page (who we are, mission, vision, board of directors, our story)
 app.use("/api/about", aboutRoutes);
