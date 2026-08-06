@@ -101,7 +101,8 @@ const getAdminCSRActivityById = async (req, res) => {
 
 const createCSRActivity = async (req, res) => {
   try {
-    const { title, excerpt, content, images, date, order, status } = req.body;
+    const { title, excerpt, content, image, imagePublicId, date, order, status } =
+      req.body;
 
     if (!title) {
       return res.status(400).json({
@@ -114,7 +115,8 @@ const createCSRActivity = async (req, res) => {
       title,
       excerpt: excerpt || "",
       content: content || "",
-      images: Array.isArray(images) ? images.filter(Boolean) : [],
+      image: image || "",
+      imagePublicId: imagePublicId || "",
       date: date || "",
       order: Number.isFinite(Number(order)) ? Number(order) : 0,
       status: status || "published",
@@ -139,7 +141,8 @@ const createCSRActivity = async (req, res) => {
 const updateCSRActivity = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, excerpt, content, images, date, order, status } = req.body;
+    const { title, excerpt, content, image, imagePublicId, date, order, status } =
+      req.body;
 
     const item = await CSRActivity.findById(id);
 
@@ -153,8 +156,8 @@ const updateCSRActivity = async (req, res) => {
     if (title !== undefined) item.title = title;
     if (excerpt !== undefined) item.excerpt = excerpt;
     if (content !== undefined) item.content = content;
-    if (images !== undefined)
-      item.images = Array.isArray(images) ? images.filter(Boolean) : [];
+    if (image !== undefined) item.image = image;
+    if (imagePublicId !== undefined) item.imagePublicId = imagePublicId;
     if (date !== undefined) item.date = date;
     if (order !== undefined) item.order = Number.isFinite(Number(order)) ? Number(order) : 0;
     if (status !== undefined) item.status = status;
