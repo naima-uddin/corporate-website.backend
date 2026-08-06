@@ -30,6 +30,7 @@ const spotlightRoutes = require("./routes/spotlight");
 const joinUsRoutes = require("./routes/joinUs");
 const jobOpportunitiesRoutes = require("./routes/jobOpportunities");
 const aboutRoutes = require("./routes/about");
+const legalPageRoutes = require("./routes/legalPage");
 const governmentEnlistmentRoutes = require("./routes/governmentEnlistment");
 const csrRoutes = require("./routes/csr");
 const csrActivitiesRoutes = require("./routes/csrActivities");
@@ -751,6 +752,9 @@ app.use("/api/job-opportunities", jobOpportunitiesRoutes);
 
 // About Us page (who we are, mission, vision, board of directors, our story)
 app.use("/api/about", aboutRoutes);
+
+// Privacy Policy & Terms of Service page content
+app.use("/api/legal-pages", legalPageRoutes);
 
 // Government Enlistment page (department credentials + certificates)
 app.use("/api/government-enlistment", governmentEnlistmentRoutes);
