@@ -19,6 +19,8 @@ const blogRoutes = require("./routes/blog");
 const uploadRoutes = require("./routes/upload");
 const clientLogosRoutes = require("./routes/clientLogos");
 const clientShowcaseSettingsRoutes = require("./routes/clientShowcaseSettings");
+const smartFeaturesRoutes = require("./routes/smartFeatures");
+const smartFeatureSettingsRoutes = require("./routes/smartFeatureSettings");
 const galleryImagesRoutes = require("./routes/galleryImages");
 const galleryCategoriesRoutes = require("./routes/galleryCategories");
 const bannerRoutes = require("./routes/banner");
@@ -721,6 +723,10 @@ app.use("/api/client-logos", clientLogosRoutes);
 
 // Client showcase section settings (description shown under "Our Clients")
 app.use("/api/client-showcase-settings", clientShowcaseSettingsRoutes);
+
+// Homepage "Smart Features" section (cards + heading), shown after Our Clients
+app.use("/api/smart-features", smartFeaturesRoutes);
+app.use("/api/smart-feature-settings", smartFeatureSettingsRoutes);
 
 // Company gallery image routes
 app.use("/api/gallery-images", galleryImagesRoutes);
