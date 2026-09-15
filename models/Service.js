@@ -1,5 +1,30 @@
 const mongoose = require("mongoose");
 
+// A "section" is a full sub-page inside a service (e.g. a product segment).
+// It mirrors the service's own content fields and has its own detail page at
+// /services/<service-slug>/<section-slug>.
+const sectionSchema = new mongoose.Schema(
+  {
+    slug: { type: String, trim: true },
+    title: { type: String, trim: true },
+    description: { type: String, default: "" },
+    icon: { type: String, default: "Code" },
+    color: { type: String, default: "bg-[#0066ff]" },
+    image: { type: String, default: "" },
+    images: { type: [String], default: [] },
+    features: { type: [String], default: [] },
+    process: { type: [String], default: [] },
+    stats: { type: [String], default: [] },
+    details: { type: String, default: "" },
+    blockOrder: {
+      type: [String],
+      default: () => ["features", "process", "stats", "gallery", "details"],
+    },
+    order: { type: Number, default: 0 },
+  },
+  { _id: true },
+);
+
 const serviceSchema = new mongoose.Schema(
   {
     title: {
@@ -59,6 +84,21 @@ const serviceSchema = new mongoose.Schema(
     stats: {
       type: [String],
       default: [],
+    },
+    sections: {
+      type: [sectionSchema],
+      default: [],
+    },
+    blockOrder: {
+      type: [String],
+      default: () => [
+        "features",
+        "process",
+        "stats",
+        "gallery",
+        "details",
+        "sections",
+      ],
     },
     isActive: {
       type: Boolean,

@@ -86,6 +86,8 @@ const createService = async (req, res) => {
       details,
       process: processSteps,
       stats,
+      sections,
+      blockOrder,
     } = req.body;
 
     if (!title || !description || !icon || !features || !category || !path) {
@@ -108,6 +110,8 @@ const createService = async (req, res) => {
       details: details || "",
       process: Array.isArray(processSteps) ? processSteps : [],
       stats: Array.isArray(stats) ? stats : [],
+      sections: Array.isArray(sections) ? sections : [],
+      blockOrder: Array.isArray(blockOrder) ? blockOrder : undefined,
     });
 
     await newService.save();
@@ -143,6 +147,8 @@ const updateService = async (req, res) => {
       details,
       process: processSteps,
       stats,
+      sections,
+      blockOrder,
       isActive,
     } = req.body;
 
@@ -168,6 +174,10 @@ const updateService = async (req, res) => {
     if (processSteps !== undefined)
       service.process = Array.isArray(processSteps) ? processSteps : [];
     if (stats !== undefined) service.stats = Array.isArray(stats) ? stats : [];
+    if (sections !== undefined)
+      service.sections = Array.isArray(sections) ? sections : [];
+    if (blockOrder !== undefined && Array.isArray(blockOrder))
+      service.blockOrder = blockOrder;
     if (isActive !== undefined) service.isActive = isActive;
 
     await service.save();
