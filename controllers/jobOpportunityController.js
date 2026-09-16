@@ -2,12 +2,8 @@ const JobOpportunity = require("../models/JobOpportunity");
 
 const getJobOpportunities = async (req, res) => {
   try {
-    const startOfToday = new Date();
-    startOfToday.setHours(0, 0, 0, 0);
-
     const jobs = await JobOpportunity.find({
       isActive: true,
-      deadline: { $gte: startOfToday },
     }).sort({ createdAt: -1 });
 
     return res.status(200).json({
