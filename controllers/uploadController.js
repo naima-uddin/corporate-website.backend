@@ -35,6 +35,7 @@ const CLOUDINARY_FOLDERS = {
   news: "a2it/news",
   general: "a2it/general",
   "site-logo": "a2it/site/logo",
+  favicon: "a2it/site/favicon",
   spotlight: "a2it/spotlight",
   "join-us": "a2it/join-us",
   about: "a2it/about",
@@ -130,6 +131,7 @@ const uploadFooterTopBandImage = uploadToFixedFolder(
 );
 const uploadNewsImage = uploadToFixedFolder("news", "news");
 const uploadSiteLogoImage = uploadToFixedFolder("site-logo", "site logo");
+const uploadFaviconImage = uploadToFixedFolder("favicon", "favicon");
 const uploadSpotlightImage = uploadToFixedFolder("spotlight", "spotlight");
 const uploadJoinUsImage = uploadToFixedFolder("join-us", "join us");
 const uploadAboutImage = uploadToFixedFolder("about", "about");
@@ -253,6 +255,7 @@ module.exports = {
   uploadFooterTopBandImage,
   uploadNewsImage,
   uploadSiteLogoImage,
+  uploadFaviconImage,
   uploadSpotlightImage,
   uploadJoinUsImage,
   uploadAboutImage,

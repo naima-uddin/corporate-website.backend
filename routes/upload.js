@@ -13,6 +13,7 @@ const {
   uploadFooterTopBandImage,
   uploadNewsImage,
   uploadSiteLogoImage,
+  uploadFaviconImage,
   uploadSpotlightImage,
   uploadJoinUsImage,
   uploadAboutImage,
@@ -87,6 +88,12 @@ router.post(
   authMiddleware,
   upload.single("image"),
   uploadSiteLogoImage,
+);
+router.post(
+  "/favicon",
+  authMiddleware,
+  upload.single("image"),
+  uploadFaviconImage,
 );
 router.post(
   "/spotlight",

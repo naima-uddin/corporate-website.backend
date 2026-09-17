@@ -34,7 +34,13 @@ const getAdminSiteSettings = async (req, res) => {
   }
 };
 
-const SCALAR_FIELDS = ["siteName", "logoImage", "logoPublicId"];
+const SCALAR_FIELDS = [
+  "siteName",
+  "logoImage",
+  "logoPublicId",
+  "faviconImage",
+  "faviconPublicId",
+];
 
 const updateSiteSettings = async (req, res) => {
   try {
