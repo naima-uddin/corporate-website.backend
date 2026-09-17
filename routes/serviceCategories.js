@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getServiceCategories,
@@ -17,13 +17,13 @@ router.get("/", getServiceCategories);
 router.post(
   "/",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("services"),
   createServiceCategory,
 );
 router.put(
   "/:name",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("services"),
   updateServiceCategory,
 );
 router.delete("/:name", authMiddleware, adminMiddleware, deleteServiceCategory);

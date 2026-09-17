@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getProjectsPage,
@@ -13,8 +13,8 @@ const router = express.Router();
 
 router.get("/", getProjectsPage);
 
-router.get("/admin", authMiddleware, getAdminProjectsPage);
+router.get("/admin", authMiddleware, requireModuleAccess("projects-page"), getAdminProjectsPage);
 
-router.put("/", authMiddleware, requireAdminOrModerator, updateProjectsPage);
+router.put("/", authMiddleware, requireModuleAccess("projects-page"), updateProjectsPage);
 
 module.exports = router;

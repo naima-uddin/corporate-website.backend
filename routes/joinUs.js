@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getJoinUs,
@@ -13,8 +13,8 @@ const router = express.Router();
 
 router.get("/", getJoinUs);
 
-router.get("/admin", authMiddleware, getAdminJoinUs);
+router.get("/admin", authMiddleware, requireModuleAccess("join-us"), getAdminJoinUs);
 
-router.put("/", authMiddleware, requireAdminOrModerator, updateJoinUs);
+router.put("/", authMiddleware, requireModuleAccess("join-us"), updateJoinUs);
 
 module.exports = router;

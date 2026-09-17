@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getSmartFeatureSettings,
@@ -15,7 +15,7 @@ router.get("/", getSmartFeatureSettings);
 router.put(
   "/",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("smart-features"),
   updateSmartFeatureSettings,
 );
 

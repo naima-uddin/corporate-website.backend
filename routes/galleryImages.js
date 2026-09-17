@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getGalleryImages,
@@ -16,14 +16,14 @@ const router = express.Router();
 
 router.get("/", getGalleryImages);
 
-router.get("/admin/all", authMiddleware, getAdminGalleryImages);
+router.get("/admin/all", authMiddleware, requireModuleAccess("gallery"), getAdminGalleryImages);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createGalleryImage);
+router.post("/", authMiddleware, requireModuleAccess("gallery"), createGalleryImage);
 
 router.put(
   "/:id",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("gallery"),
   updateGalleryImage,
 );
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getClientShowcaseSettings,
@@ -13,12 +13,17 @@ const router = express.Router();
 
 router.get("/", getClientShowcaseSettings);
 
-router.get("/admin", authMiddleware, getAdminClientShowcaseSettings);
+router.get(
+  "/admin",
+  authMiddleware,
+  requireModuleAccess("client-showcase"),
+  getAdminClientShowcaseSettings,
+);
 
 router.put(
   "/",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("client-showcase"),
   updateClientShowcaseSettings,
 );
 

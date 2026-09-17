@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 const BlogPost = require("../models/BlogPost");
 const BlogCategory = require("../models/BlogCategory");
 const { cloudinary } = require("../config/cloudinary");
-const { authMiddleware, adminMiddleware } = require("../middleware/auth");
+const {
+  authMiddleware,
+  adminMiddleware,
+  requireModuleAccess,
+} = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -277,11 +281,12 @@ router.get("/:slug/related", async (req, res) => {
 
 // ==================== ADMIN ROUTES ====================
 
-// Protect all admin routes (apply middleware to /admin and all sub-routes)
-router.use("/admin", authMiddleware, adminMiddleware);
+// Protect all admin routes; module-level access is enforced per-route below
+// (moderators need the "blog" permission, delete stays admin-only)
+router.use("/admin", authMiddleware);
 
 // GET /api/blog/admin/blogs - List all blogs (admin)
-router.get("/admin/blogs", async (req, res) => {
+router.get("/admin/blogs", requireModuleAccess("blog"), async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
@@ -320,7 +325,7 @@ router.get("/admin/blogs", async (req, res) => {
 });
 
 // GET /api/blog/admin/blogs/:id - Get single blog (admin)
-router.get("/admin/blogs/:id", async (req, res) => {
+router.get("/admin/blogs/:id", requireModuleAccess("blog"), async (req, res) => {
   try {
     const blog = await BlogPost.findById(req.params.id)
       .populate("categories")
@@ -339,7 +344,7 @@ router.get("/admin/blogs/:id", async (req, res) => {
 });
 
 // POST /api/blog/admin/blogs - Create blog
-router.post("/admin/blogs", async (req, res) => {
+router.post("/admin/blogs", requireModuleAccess("blog"), async (req, res) => {
   try {
     if (!req.body.title || !req.body.title.trim()) {
       return res
@@ -396,7 +401,7 @@ router.post("/admin/blogs", async (req, res) => {
 });
 
 // PUT /api/blog/admin/blogs/:id - Update blog
-router.put("/admin/blogs/:id", async (req, res) => {
+router.put("/admin/blogs/:id", requireModuleAccess("blog"), async (req, res) => {
   try {
     const blog = await BlogPost.findById(req.params.id);
 
@@ -458,7 +463,7 @@ router.put("/admin/blogs/:id", async (req, res) => {
 });
 
 // DELETE /api/blog/admin/blogs/:id - Delete blog
-router.delete("/admin/blogs/:id", async (req, res) => {
+router.delete("/admin/blogs/:id", adminMiddleware, async (req, res) => {
   try {
     const blog = await BlogPost.findById(req.params.id);
 
@@ -511,7 +516,11 @@ router.delete("/admin/blogs/:id", async (req, res) => {
 });
 
 // POST /api/blog/admin/upload - Upload media
-router.post("/admin/upload", upload.single("file"), async (req, res) => {
+router.post(
+  "/admin/upload",
+  requireModuleAccess("blog"),
+  upload.single("file"),
+  async (req, res) => {
   try {
     if (!req.file) {
       return res
@@ -550,10 +559,11 @@ router.post("/admin/upload", upload.single("file"), async (req, res) => {
     console.error("Upload error:", error);
     res.status(500).json({ success: false, message: error.message });
   }
-});
+  },
+);
 
 // DELETE /api/blog/admin/upload/:publicId - Delete media
-router.delete("/admin/upload/:publicId", async (req, res) => {
+router.delete("/admin/upload/:publicId", adminMiddleware, async (req, res) => {
   try {
     const publicId = decodeURIComponent(req.params.publicId);
     const resourceType = req.query.type === "video" ? "video" : "image";
@@ -572,7 +582,7 @@ router.delete("/admin/upload/:publicId", async (req, res) => {
 // ==================== TAGS ADMIN ROUTE ====================
 
 // GET /api/blog/admin/tags - List all unique tags
-router.get("/admin/tags", async (req, res) => {
+router.get("/admin/tags", requireModuleAccess("blog"), async (req, res) => {
   try {
     const tags = await BlogPost.distinct("tags");
     res.json({ success: true, tags: tags.filter(Boolean).sort() });
@@ -584,7 +594,7 @@ router.get("/admin/tags", async (req, res) => {
 // ==================== CATEGORY ADMIN ROUTES ====================
 
 // GET /api/blog/admin/categories - List all categories
-router.get("/admin/categories", async (req, res) => {
+router.get("/admin/categories", requireModuleAccess("blog"), async (req, res) => {
   try {
     const categories = await BlogCategory.find().sort({ name: 1 }).lean();
 
@@ -595,7 +605,7 @@ router.get("/admin/categories", async (req, res) => {
 });
 
 // POST /api/blog/admin/categories - Create category
-router.post("/admin/categories", async (req, res) => {
+router.post("/admin/categories", requireModuleAccess("blog"), async (req, res) => {
   try {
     const category = new BlogCategory({
       name: req.body.name,
@@ -612,7 +622,7 @@ router.post("/admin/categories", async (req, res) => {
 });
 
 // PUT /api/blog/admin/categories/:id - Update category
-router.put("/admin/categories/:id", async (req, res) => {
+router.put("/admin/categories/:id", requireModuleAccess("blog"), async (req, res) => {
   try {
     const category = await BlogCategory.findById(req.params.id);
 
@@ -637,7 +647,7 @@ router.put("/admin/categories/:id", async (req, res) => {
 });
 
 // DELETE /api/blog/admin/categories/:id - Delete category
-router.delete("/admin/categories/:id", async (req, res) => {
+router.delete("/admin/categories/:id", adminMiddleware, async (req, res) => {
   try {
     const category = await BlogCategory.findById(req.params.id);
 

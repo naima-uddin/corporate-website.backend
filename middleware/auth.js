@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 const authMiddleware = (req, res, next) => {
   try {
@@ -44,4 +45,37 @@ const requireAdminOrModerator = (req, res, next) => {
   });
 };
 
-module.exports = { authMiddleware, adminMiddleware, requireAdminOrModerator };
+const requireModuleAccess = (moduleKey) => async (req, res, next) => {
+  try {
+    if (req.role === "admin") {
+      return next();
+    }
+
+    if (req.role === "moderator") {
+      const user = await User.findById(req.userId).select(
+        "permissions isActive",
+      );
+      if (user?.isActive && user.permissions?.includes(moduleKey)) {
+        return next();
+      }
+    }
+
+    return res.status(403).json({
+      success: false,
+      message: "Access denied for this module.",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to verify module access",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = {
+  authMiddleware,
+  adminMiddleware,
+  requireAdminOrModerator,
+  requireModuleAccess,
+};

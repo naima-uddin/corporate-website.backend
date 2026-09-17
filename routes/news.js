@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getNews,
@@ -18,12 +18,12 @@ const router = express.Router();
 
 router.get("/", getNews);
 
-router.get("/admin/all", authMiddleware, getAdminNews);
-router.get("/admin/:id", authMiddleware, getAdminNewsById);
+router.get("/admin/all", authMiddleware, requireModuleAccess("news"), getAdminNews);
+router.get("/admin/:id", authMiddleware, requireModuleAccess("news"), getAdminNewsById);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createNews);
+router.post("/", authMiddleware, requireModuleAccess("news"), createNews);
 
-router.put("/:id", authMiddleware, requireAdminOrModerator, updateNews);
+router.put("/:id", authMiddleware, requireModuleAccess("news"), updateNews);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteNews);
 

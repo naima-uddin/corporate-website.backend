@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getPortfolioCategories,
@@ -16,7 +16,7 @@ router.get("/", getPortfolioCategories);
 router.post(
   "/",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("portfolio"),
   createPortfolioCategory,
 );
 router.delete(

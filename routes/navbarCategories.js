@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getNavbarCategories,
@@ -14,11 +14,11 @@ const {
 const router = express.Router();
 
 router.get("/", getNavbarCategories);
-router.post("/", authMiddleware, requireAdminOrModerator, createNavbarCategory);
+router.post("/", authMiddleware, requireModuleAccess("navbar-menu"), createNavbarCategory);
 router.put(
   "/:name",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("navbar-menu"),
   updateNavbarCategory,
 );
 router.delete("/:name", authMiddleware, adminMiddleware, deleteNavbarCategory);

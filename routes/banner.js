@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getBanners,
@@ -16,11 +16,11 @@ const router = express.Router();
 
 router.get("/", getBanners);
 
-router.get("/admin/all", authMiddleware, getAdminBanners);
+router.get("/admin/all", authMiddleware, requireModuleAccess("banner"), getAdminBanners);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createBanner);
+router.post("/", authMiddleware, requireModuleAccess("banner"), createBanner);
 
-router.put("/:id", authMiddleware, requireAdminOrModerator, updateBanner);
+router.put("/:id", authMiddleware, requireModuleAccess("banner"), updateBanner);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteBanner);
 

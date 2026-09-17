@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getGovernmentEnlistment,
@@ -13,12 +13,17 @@ const router = express.Router();
 
 router.get("/", getGovernmentEnlistment);
 
-router.get("/admin", authMiddleware, getAdminGovernmentEnlistment);
+router.get(
+  "/admin",
+  authMiddleware,
+  requireModuleAccess("government-enlistment"),
+  getAdminGovernmentEnlistment,
+);
 
 router.put(
   "/",
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess("government-enlistment"),
   updateGovernmentEnlistment,
 );
 

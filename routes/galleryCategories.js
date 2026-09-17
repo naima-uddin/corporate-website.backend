@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getGalleryCategories,
@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 router.get("/", getGalleryCategories);
-router.post("/", authMiddleware, requireAdminOrModerator, createGalleryCategory);
+router.post("/", authMiddleware, requireModuleAccess("gallery"), createGalleryCategory);
 router.delete("/:name", authMiddleware, adminMiddleware, deleteGalleryCategory);
 
 module.exports = router;

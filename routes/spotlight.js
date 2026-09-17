@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getSpotlight,
@@ -13,8 +13,8 @@ const router = express.Router();
 
 router.get("/", getSpotlight);
 
-router.get("/admin", authMiddleware, getAdminSpotlight);
+router.get("/admin", authMiddleware, requireModuleAccess("spotlight"), getAdminSpotlight);
 
-router.put("/", authMiddleware, requireAdminOrModerator, updateSpotlight);
+router.put("/", authMiddleware, requireModuleAccess("spotlight"), updateSpotlight);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getPortfolios,
@@ -16,11 +16,11 @@ const router = express.Router();
 
 router.get("/", getPortfolios);
 
-router.get("/admin/all", authMiddleware, getAdminPortfolios);
+router.get("/admin/all", authMiddleware, requireModuleAccess("portfolio"), getAdminPortfolios);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createPortfolio);
+router.post("/", authMiddleware, requireModuleAccess("portfolio"), createPortfolio);
 
-router.put("/:id", authMiddleware, requireAdminOrModerator, updatePortfolio);
+router.put("/:id", authMiddleware, requireModuleAccess("portfolio"), updatePortfolio);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deletePortfolio);
 

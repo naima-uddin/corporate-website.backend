@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getJobOpportunities,
@@ -16,11 +16,11 @@ const router = express.Router();
 
 router.get("/", getJobOpportunities);
 
-router.get("/admin/all", authMiddleware, getAdminJobOpportunities);
+router.get("/admin/all", authMiddleware, requireModuleAccess("job-opportunities"), getAdminJobOpportunities);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createJobOpportunity);
+router.post("/", authMiddleware, requireModuleAccess("job-opportunities"), createJobOpportunity);
 
-router.put("/:id", authMiddleware, requireAdminOrModerator, updateJobOpportunity);
+router.put("/:id", authMiddleware, requireModuleAccess("job-opportunities"), updateJobOpportunity);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteJobOpportunity);
 

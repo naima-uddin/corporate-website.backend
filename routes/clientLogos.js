@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getClientLogos,
@@ -16,11 +16,11 @@ const router = express.Router();
 
 router.get("/", getClientLogos);
 
-router.get("/admin/all", authMiddleware, getAdminClientLogos);
+router.get("/admin/all", authMiddleware, requireModuleAccess("client-showcase"), getAdminClientLogos);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createClientLogo);
+router.post("/", authMiddleware, requireModuleAccess("client-showcase"), createClientLogo);
 
-router.put("/:id", authMiddleware, requireAdminOrModerator, updateClientLogo);
+router.put("/:id", authMiddleware, requireModuleAccess("client-showcase"), updateClientLogo);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteClientLogo);
 

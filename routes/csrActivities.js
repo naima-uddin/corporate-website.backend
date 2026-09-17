@@ -2,7 +2,7 @@ const express = require("express");
 const {
   authMiddleware,
   adminMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const {
   getCSRActivities,
@@ -18,12 +18,12 @@ const router = express.Router();
 
 router.get("/", getCSRActivities);
 
-router.get("/admin/all", authMiddleware, getAdminCSRActivities);
-router.get("/admin/:id", authMiddleware, getAdminCSRActivityById);
+router.get("/admin/all", authMiddleware, requireModuleAccess("csr"), getAdminCSRActivities);
+router.get("/admin/:id", authMiddleware, requireModuleAccess("csr"), getAdminCSRActivityById);
 
-router.post("/", authMiddleware, requireAdminOrModerator, createCSRActivity);
+router.post("/", authMiddleware, requireModuleAccess("csr"), createCSRActivity);
 
-router.put("/:id", authMiddleware, requireAdminOrModerator, updateCSRActivity);
+router.put("/:id", authMiddleware, requireModuleAccess("csr"), updateCSRActivity);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteCSRActivity);
 

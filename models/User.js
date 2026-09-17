@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "moderator"],
       default: "moderator",
     },
+    permissions: {
+      type: [String],
+      default: [],
+    },
     isActive: {
       type: Boolean,
       default: true,

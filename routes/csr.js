@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   authMiddleware,
-  requireAdminOrModerator,
+  requireModuleAccess,
 } = require("../middleware/auth");
 const { getCSR, getAdminCSR, updateCSR } = require("../controllers/csrController");
 
@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.get("/", getCSR);
 
-router.get("/admin", authMiddleware, getAdminCSR);
+router.get("/admin", authMiddleware, requireModuleAccess("csr"), getAdminCSR);
 
-router.put("/", authMiddleware, requireAdminOrModerator, updateCSR);
+router.put("/", authMiddleware, requireModuleAccess("csr"), updateCSR);
 
 module.exports = router;

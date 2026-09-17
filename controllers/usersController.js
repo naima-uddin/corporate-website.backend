@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const { MODULE_KEYS } = require("../constants/modules");
 
 const getUsers = async (req, res) => {
   try {
@@ -20,7 +21,7 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, permissions } = req.body;
 
     if (!name || !email || !password || !role) {
       return res.status(400).json({
@@ -56,6 +57,10 @@ const createUser = async (req, res) => {
       email,
       password,
       role,
+      permissions:
+        role === "moderator" && Array.isArray(permissions)
+          ? permissions.filter((key) => MODULE_KEYS.includes(key))
+          : [],
     });
 
     await newUser.save();
@@ -68,6 +73,7 @@ const createUser = async (req, res) => {
         name: newUser.name,
         email: newUser.email,
         role: newUser.role,
+        permissions: newUser.permissions,
       },
     });
   } catch (error) {
@@ -82,7 +88,7 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, role, isActive } = req.body;
+    const { name, email, role, isActive, permissions } = req.body;
 
     const user = await User.findById(id);
 
@@ -116,6 +122,16 @@ const updateUser = async (req, res) => {
     }
     if (role && ["admin", "moderator"].includes(role)) user.role = role;
     if (isActive !== undefined) user.isActive = isActive;
+
+    if (user.role === "moderator") {
+      if (Array.isArray(permissions)) {
+        user.permissions = permissions.filter((key) =>
+          MODULE_KEYS.includes(key),
+        );
+      }
+    } else {
+      user.permissions = [];
+    }
 
     await user.save();
 
